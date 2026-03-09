@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
   <title>Happy Birthday Runesha 🎉</title>
   <style>
+    /* ----- RESET & GLOBAL ----- */
     * {
       margin: 0;
       padding: 0;
@@ -33,8 +34,8 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* smooth container for all content */
-    .container {
+    /* ----- STRUCTURE (clean hierarchy) ----- */
+    .page {
       max-width: 1200px;
       width: 100%;
       display: flex;
@@ -42,22 +43,34 @@
       align-items: center;
     }
 
-    /* === HERO === */
-    header {
-      padding: 4rem 1rem 2.5rem;
+    /* cards / containers */
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 48px 20px 48px 20px;
+      border: 2px solid rgba(255, 255, 240, 0.3);
+      box-shadow: 0 25px 40px rgba(150, 20, 70, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    /* ----- HERO SECTION (clean) ----- */
+    .hero {
+      padding: 3rem 1.5rem 2.5rem;
       width: 100%;
       position: relative;
       z-index: 5;
+      margin-bottom: 0.5rem;
     }
 
     h1 {
-      font-size: clamp(2.4rem, 15vw, 5rem);
+      font-size: clamp(2.4rem, 14vw, 5rem);
       text-shadow: 0 8px 18px rgba(0,0,0,0.25);
       animation: bounce 2.2s infinite ease-in-out;
       letter-spacing: 2px;
       line-height: 1.2;
       margin-bottom: 0.5rem;
-      background: linear-gradient(45deg, #fffdfd, #fffbcb);
+      background: linear-gradient(135deg, #fffdfd, #fffbcb);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 10px #ffd0dd, 2px 4px 10px rgba(0,0,0,0.2);
@@ -68,11 +81,9 @@
       50% { transform: translateY(-12px); }
     }
 
-    header p {
+    .hero p {
       font-size: clamp(1.2rem, 5vw, 1.7rem);
       margin: 0.8rem 0 1.5rem;
-      backdrop-filter: blur(2px);
-      text-shadow: 2px 2px 2px rgba(0,0,0,0.15);
       font-weight: 300;
       animation: softGlow 2.4s infinite alternate;
     }
@@ -82,13 +93,13 @@
       100% { opacity: 1; text-shadow: 0 0 15px #ffd9e2, 0 0 5px #fff; }
     }
 
-    /* COUNTDOWN with glassmorphism */
+    /* countdown – glassier */
     #countdown {
       font-size: clamp(2rem, 10vw, 3.5rem);
       font-weight: 600;
       background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: 70px;
       padding: 0.7rem 1.8rem;
       display: inline-block;
@@ -96,7 +107,6 @@
       border: 2px solid rgba(255,255,240,0.4);
       box-shadow: 0 20px 35px rgba(0,0,0,0.3), 0 0 0 4px rgba(255,215,215,0.2);
       letter-spacing: 3px;
-      transition: 0.2s;
       animation: countPulse 1.8s infinite;
     }
 
@@ -105,8 +115,8 @@
       50% { transform: scale(1.02); box-shadow: 0 25px 45px #ffb6c190; }
     }
 
-    /* gift button */
-    button {
+    /* ----- BUTTON (elevated) ----- */
+    .gift-btn {
       padding: 1rem 2.8rem;
       font-size: clamp(1.2rem, 5vw, 1.7rem);
       border: none;
@@ -128,23 +138,32 @@
       100% { box-shadow: 0 15px 35px #ff4770; transform: scale(1.03); background: #fff9fc; }
     }
 
-    button:hover {
+    .gift-btn:hover {
       transform: scale(1.1) rotate(-1deg);
       background: #fff2f5;
       color: #b13258;
     }
 
-    /* SECTION base */
-    .section {
-      padding: 3.5rem 1.2rem;
+    /* ----- MESSAGE CARD (well organized) ----- */
+    .message-section {
       width: 100%;
-      border-bottom: 2px dashed rgba(255,255,255,0.3);
-      animation: fadeSlide 1.2s ease;
+      padding: 2rem 1.2rem 3rem;
     }
 
-    @keyframes fadeSlide {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .message-card {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,245,240,0.5);
+      border-radius: 60px 20px 60px 20px;
+      transition: 0.4s;
+    }
+
+    .message-card:hover {
+      box-shadow: 0 0 0 5px rgba(255,240,245,0.6), 0 30px 50px #b32d4e;
+      transform: scale(1.01);
     }
 
     h2 {
@@ -161,30 +180,19 @@
       75% { transform: rotate(-2deg); }
     }
 
-    /* message paragraph — exactly same words, no addition/removal */
-    .section p {
-      max-width: 720px;
-      margin: 0 auto;
+    .message-card p {
       font-size: clamp(1.1rem, 4vw, 1.5rem);
       line-height: 1.7;
-      background: rgba(0,0,0,0.15);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      padding: 2rem 2.2rem;
-      border-radius: 60px 20px 60px 20px;
-      border: 1px solid rgba(255,245,240,0.5);
-      box-shadow: 0 25px 40px rgba(128, 0, 64, 0.3);
       font-weight: 300;
-      transition: 0.4s;
       word-break: break-word;
     }
 
-    .section p:hover {
-      box-shadow: 0 0 0 5px rgba(255,240,245,0.6), 0 30px 50px #b32d4e;
-      transform: scale(1.01);
+    /* ----- SURPRISE BLOCK (neatly separated) ----- */
+    .surprise-section {
+      width: 100%;
+      padding: 0.5rem 1.2rem 3rem;
     }
 
-    /* SURPRISE box */
     #surprise {
       display: none;
       font-size: clamp(2.2rem, 10vw, 4rem);
@@ -192,7 +200,7 @@
       color: #b81b4b;
       padding: 2.5rem 1.5rem;
       border-radius: 80px 20px 80px 20px;
-      margin: 1.5rem auto;
+      margin: 0 auto;
       max-width: 850px;
       text-shadow: 4px 4px 0 #ffdbea;
       box-shadow: 0 40px 40px #84002d60, 0 0 0 8px #ffb7c5;
@@ -209,8 +217,8 @@
       100% { transform: scale(1) rotate(0); }
     }
 
-    /* footer */
-    footer {
+    /* ----- FOOTER (clean) ----- */
+    .footer {
       background: rgba(0, 0, 0, 0.25);
       backdrop-filter: blur(8px);
       width: 100%;
@@ -218,7 +226,7 @@
       font-size: clamp(1rem, 4vw, 1.4rem);
       border-top: 3px solid rgba(255,255,200,0.4);
       letter-spacing: 1.2px;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       border-radius: 40px 40px 0 0;
       font-weight: 300;
       animation: footerFlicker 3s infinite;
@@ -229,7 +237,7 @@
       50% { opacity: 1; background-color: #260d15b0; }
     }
 
-    /* === BALLOONS fixed with animation, more graceful === */
+    /* ----- DECOR (balloons, hearts, sparkles – only visual) ----- */
     .balloon {
       position: fixed;
       bottom: -120px;
@@ -271,7 +279,6 @@
       100% { transform: translateY(-130vh) rotate(-6deg); opacity: 0.2; }
     }
 
-    /* floating hearts (extra animations only, no extra text) */
     .floating-heart {
       position: fixed;
       font-size: 24px;
@@ -288,7 +295,6 @@
       100% { transform: translateY(-120vh) scale(1.3); opacity: 0; }
     }
 
-    /* tiny sparkles only decorative */
     .glitter {
       position: fixed;
       width: 8px;
@@ -307,72 +313,63 @@
       100% { transform: scale(1.8) rotate(180deg); opacity: 0; }
     }
 
-    /* responsive adjustments: no text added/removed */
+    /* responsive fine-tuning */
     @media (max-width: 580px) {
-      header { padding: 2.5rem 0.5rem; }
-      .section p { padding: 1.5rem 1.2rem; border-radius: 30px 10px 30px 10px; }
+      .hero { padding: 2rem 0.5rem; }
+      .message-card { padding: 1.5rem 1.2rem; }
       #countdown { padding: 0.5rem 1rem; letter-spacing: 1px; }
     }
-
-    /* extra animation for h2 message (preserve exact words) */
-    .section h2 + p {
-      animation: borderPulse 3s infinite alternate;
-    }
-
-    @keyframes borderPulse {
-      0% { border-color: rgba(255,240,245,0.6); }
-      100% { border-color: rgba(255,255,255,0.9); }
-    }
-
-    /* no additional text anywhere — only visual */
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- HERO section: exactly same text, countdown id unchanged -->
-    <header>
+  <div class="page">
+    <!-- HERO block (countdown + title) -->
+    <header class="hero">
       <h1>🎂 Happy Birthday Bestie 🎂</h1>
       <p>Your special day is almost here!</p>
       <div id="countdown"></div>
-      <button onclick="openGift()">Open Your Gift 🎁</button>
+      <button class="gift-btn" onclick="openGift()">Open Your Gift 🎁</button>
     </header>
 
-    <!-- Message section: exactly same paragraph, no extra words -->
-    <div class="section">
-      <h2>💌 A Message For You</h2>
-      <p style="max-width:650px; margin:auto; font-size:18px; line-height:1.6">
-        Happy Birthday to the most amazing best friend ever!
-        Thank you for every laugh, every adventure, and every memory we've created together.
-        You make life brighter and happier, and I'm so lucky to have you as my best friend.
-        May your year be filled with success, happiness, and dreams coming true.
-        You deserve the best today and always ❤️
-      </p>
+    <!-- MESSAGE block – exactly the original words, now in a neat card -->
+    <div class="message-section">
+      <div class="message-card">
+        <h2>💌 A Message For You</h2>
+        <p>
+          Happy Birthday to the most amazing best friend ever!
+          Thank you for every laugh, every adventure, and every memory we've created together.
+          You make life brighter and happier, and I'm so lucky to have you as my best friend.
+          May your year be filled with success, happiness, and dreams coming true.
+          You deserve the best today and always ❤️
+        </p>
+      </div>
     </div>
 
-    <!-- Surprise div: exactly original text, no extra words -->
-    <div class="section" style="border-bottom: none;">
+    <!-- SURPRISE block – hidden until click, no extra words -->
+    <div class="surprise-section">
       <div id="surprise">
         🎉 SURPRISE 🎉  
         You are the BEST FRIEND EVER!!
       </div>
     </div>
 
-    <!-- Footer: exactly same text -->
-    <footer>
+    <!-- FOOTER – exactly as before -->
+    <footer class="footer">
       Made with ❤️ by your best friend
     </footer>
   </div>
 
   <script>
-    // SURPRISE + CONFETTI (exactly same function, enhanced confetti)
+    // openGift: reveal surprise + launchConfetti (enhanced, same text)
     function openGift() {
       document.getElementById("surprise").style.display = "block";
       launchConfetti();
     }
 
-    // CONFETTI – more sparkly but same logic (no new text)
+    // confetti – exactly same spirit, no extra text
     function launchConfetti() {
-      for (let i = 0; i < 140; i++) {   // slightly more for beauty
+      // paper pieces
+      for (let i = 0; i < 140; i++) {
         let conf = document.createElement("div");
         conf.style.position = "fixed";
         conf.style.width = (Math.random() * 15 + 6) + "px";
@@ -396,7 +393,7 @@
           }
         }, 18);
       }
-      // also add a few big confetti hearts
+      // tiny hearts confetti
       for (let h = 0; h < 15; h++) {
         let heart = document.createElement("div");
         heart.innerHTML = "❤️";
@@ -418,7 +415,7 @@
       }
     }
 
-    // BALLOONS (same interval, but more variations)
+    // balloon generator (visual only)
     setInterval(() => {
       let balloon = document.createElement("div");
       balloon.className = "balloon";
@@ -431,7 +428,7 @@
       setTimeout(() => { balloon.remove(); }, 10000);
     }, 650);
 
-    // floating hearts / sparkles (only animations, no extra text)
+    // floating symbols (no extra text, only icons)
     function createFloatingElement() {
       let heartDiv = document.createElement("div");
       heartDiv.classList.add("floating-heart");
@@ -445,7 +442,7 @@
     }
     setInterval(createFloatingElement, 1200);
 
-    // additional tiny glitter (only visual)
+    // static glitter spots (background sparkle)
     for (let g = 0; g < 30; g++) {
       let glitter = document.createElement("div");
       glitter.classList.add("glitter");
@@ -456,7 +453,7 @@
       document.body.appendChild(glitter);
     }
 
-    // COUNTDOWN exactly same code (birthday unchanged)
+    // COUNTDOWN – exactly same target date
     let birthday = new Date("March 10, 2026 00:00:00").getTime();
     let timer = setInterval(function () {
       let now = new Date().getTime();
